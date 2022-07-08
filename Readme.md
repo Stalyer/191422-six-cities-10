@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов»
 
 * Студент: [Иван Жарков](https://up.htmlacademy.ru/react/10/user/191422).
-* Наставник: `Неизвестно`.
+* Наставник: [Дмитрий (sench) Железцов](https://htmlacademy.ru/profile/sench).
 
 ---
 
