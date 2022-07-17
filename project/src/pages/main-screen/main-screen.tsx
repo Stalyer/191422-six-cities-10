@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom';
 import Card from '../../components/card/card';
 import Logo from '../../components/logo/logo';
 import UserNav from '../../components/user-nav/user-nav';
@@ -47,34 +48,34 @@ function MainScreen({placesCount} : MainScreenProps): JSX.Element {
           <section className="locations container">
             <ul className="locations__list tabs__list">
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <Link to="/" className="locations__item-link tabs__item">
                   <span>Paris</span>
-                </a>
+                </Link>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <Link to="/" className="locations__item-link tabs__item">
                   <span>Cologne</span>
-                </a>
+                </Link>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <Link to="/" className="locations__item-link tabs__item">
                   <span>Brussels</span>
-                </a>
+                </Link>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active">
+                <Link to="/" className="locations__item-link tabs__item tabs__item--active">
                   <span>Amsterdam</span>
-                </a>
+                </Link>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <Link to="/" className="locations__item-link tabs__item">
                   <span>Hamburg</span>
-                </a>
+                </Link>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <Link to="/" className="locations__item-link tabs__item">
                   <span>Dusseldorf</span>
-                </a>
+                </Link>
               </li>
             </ul>
           </section>
@@ -100,7 +101,7 @@ function MainScreen({placesCount} : MainScreenProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {MOCK_CARDS.map((card) => <Card key={card.id.toString()} title={card.title} />)}
+                {MOCK_CARDS.map((card) => <Card key={card.id.toString()} id={card.id.toString()} title={card.title} />)}
               </div>
             </section>
             <div className="cities__right-section">
