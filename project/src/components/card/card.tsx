@@ -1,17 +1,21 @@
+import {Link} from 'react-router-dom';
+import {AppRoute} from '../../const';
+
 type CardProps = {
+  id: string,
   title: string
 }
 
-function Card({title} : CardProps): JSX.Element {
+function Card({id, title} : CardProps): JSX.Element {
   return (
     <article className="cities__card place-card">
       <div className="place-card__mark">
         <span>Premium</span>
       </div>
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link to={`${AppRoute.Room}/${id}`}>
           <img className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="Place image" />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -33,7 +37,7 @@ function Card({title} : CardProps): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link to={`${AppRoute.Room}/${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">Apartment</p>
       </div>
