@@ -1,36 +1,15 @@
 import {Link} from 'react-router-dom';
-import Card from '../../components/card/card';
 import Logo from '../../components/logo/logo';
+import OfferList from '../../components/offer-list/offer-list';
 import UserNav from '../../components/user-nav/user-nav';
+import {Offers} from '../../types/offer';
 
 type MainScreenProps = {
-  placesCount: number;
+  placesCount: number,
+  offers: Offers;
 }
 
-const MOCK_CARDS = [
-  {
-    id: 1,
-    title: 'Beautiful &amp; luxurious apartment at great location'
-  },
-  {
-    id: 2,
-    title: 'Wood and stone place'
-  },
-  {
-    id: 3,
-    title: 'Canal View Prinsengracht'
-  },
-  {
-    id: 4,
-    title: 'Nice, cozy, warm big bed apartment'
-  },
-  {
-    id: 5,
-    title: 'Wood and stone place'
-  }
-];
-
-function MainScreen({placesCount} : MainScreenProps): JSX.Element {
+function MainScreen({placesCount, offers} : MainScreenProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -100,9 +79,7 @@ function MainScreen({placesCount} : MainScreenProps): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                {MOCK_CARDS.map((card) => <Card key={card.id.toString()} id={card.id.toString()} title={card.title} />)}
-              </div>
+              <OfferList offers={offers} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
