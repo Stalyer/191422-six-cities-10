@@ -7,6 +7,19 @@ export type Offer = {
   rating: number,
   isFavorite: boolean,
   isPremium: boolean,
+  location: {
+    latitude: number,
+    longitude: number,
+    zoom: number
+  },
+  city: {
+    location: {
+      latitude: number,
+      longitude: number,
+      zoom: number
+    },
+    name: string
+  }
 }
 
 export type Offers = Offer[];

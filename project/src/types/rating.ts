@@ -1,6 +1,6 @@
 export type Rating = {
   value: number,
-  title: string,
+  title: string
 }
 
 export type Ratings = Rating[];
