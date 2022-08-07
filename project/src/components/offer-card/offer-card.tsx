@@ -11,7 +11,7 @@ function OfferCard({offer, onCardHover} : OfferCardProps): JSX.Element {
   const {id, title, type, previewImage, price, isPremium} = offer;
 
   return (
-    <article className="cities__card place-card" onMouseOver={() => onCardHover(offer)}>
+    <article className="cities__card place-card" onMouseEnter={() => onCardHover(offer)}>
       {isPremium ?
         <div className="place-card__mark">
           <span>Premium</span>

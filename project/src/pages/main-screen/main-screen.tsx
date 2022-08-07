@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom';
 import Logo from '../../components/logo/logo';
+import Map from '../../components/map/map';
 import OfferList from '../../components/offer-list/offer-list';
 import UserNav from '../../components/user-nav/user-nav';
 import {Offers} from '../../types/offer';
@@ -82,7 +83,9 @@ function MainScreen({placesCount, offers} : MainScreenProps): JSX.Element {
               <OfferList offers={offers} />
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <section className="cities__map map">
+                <Map offers={offers} selectedOffer={offers[0]} />
+              </section>
             </div>
           </div>
         </div>
