@@ -92,5 +92,97 @@ export const offers: Offers = [
       },
       name: 'Amsterdam'
     }
-  }
+  },
+  {
+    id: 5,
+    title: 'Nice, cozy, warm big bed apartment',
+    type: 'Apartment',
+    previewImage: '/img/apartment-03.jpg',
+    price: 180,
+    rating: 2,
+    isFavorite: false,
+    isPremium: false,
+    location: {
+      latitude: 52.3809553943508,
+      longitude: 4.939309666406198,
+      zoom: 8
+    },
+    city: {
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10
+      },
+      name: 'Paris'
+    }
+  },
+  {
+    id: 6,
+    title: 'Canal View Prinsengracht',
+    type: 'Apartment',
+    previewImage: '/img/apartment-03.jpg',
+    price: 180,
+    rating: 2,
+    isFavorite: false,
+    isPremium: false,
+    location: {
+      latitude: 52.369553943508,
+      longitude: 4.85309666406198,
+      zoom: 8
+    },
+    city: {
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10
+      },
+      name: 'Paris'
+    }
+  },
+  {
+    id: 7,
+    title: 'Canal View Prinsengracht',
+    type: 'Apartment',
+    previewImage: '/img/apartment-03.jpg',
+    price: 180,
+    rating: 2,
+    isFavorite: false,
+    isPremium: false,
+    location: {
+      latitude: 52.3809553943508,
+      longitude: 4.939309666406198,
+      zoom: 8
+    },
+    city: {
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10
+      },
+      name: 'Cologne'
+    }
+  },
+  {
+    id: 8,
+    title: 'Canal View Prinsengracht',
+    type: 'Apartment',
+    previewImage: '/img/apartment-03.jpg',
+    price: 180,
+    rating: 2,
+    isFavorite: false,
+    isPremium: false,
+    location: {
+      latitude: 52.3809553943508,
+      longitude: 4.939309666406198,
+      zoom: 8
+    },
+    city: {
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10
+      },
+      name: 'Hamburg'
+    }
+  },
 ];
