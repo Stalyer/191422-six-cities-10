@@ -21,7 +21,7 @@ function MainScreen(): JSX.Element {
         </div>
       </header>
 
-      <main className={`page__main page__main--index ${offersCount === 0 ? 'page__main--index-empty' : ''}`} >
+      <main className={`page__main page__main--index ${offersCount === 0 && 'page__main--index-empty'}`} >
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <CityList />
