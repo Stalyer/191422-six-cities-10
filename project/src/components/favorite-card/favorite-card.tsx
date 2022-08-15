@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../const';
+import {AppRoute, RATING_MAX_STARS} from '../../const';
 import {Offer} from '../../types/offer';
 
 type FavoriteCardProps = {
@@ -7,7 +7,8 @@ type FavoriteCardProps = {
 }
 
 function FavoriteCard({offer} : FavoriteCardProps): JSX.Element {
-  const {id, title, type, previewImage, price, isPremium} = offer;
+  const {id, title, type, previewImage, price, isPremium, rating} = offer;
+  const ratingWidthValue = rating / RATING_MAX_STARS * 100;
 
   return (
     <article className="favorites__card place-card">
@@ -23,7 +24,7 @@ function FavoriteCard({offer} : FavoriteCardProps): JSX.Element {
       <div className="favorites__card-info place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">&euro;{price}</b>
+            <b className="place-card__price-value">&euro;{price}&nbsp;</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
@@ -35,7 +36,7 @@ function FavoriteCard({offer} : FavoriteCardProps): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: '100%'}}></span>
+            <span style={{width: `${ratingWidthValue}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
