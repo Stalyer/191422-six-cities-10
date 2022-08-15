@@ -19,8 +19,16 @@ export enum APIRoute {
   Logout = '/logout',
 }
 
+export enum NameSpace {
+  Data = 'DATA',
+  Offer = 'OFFER',
+  User = 'USER',
+}
+
 export const URL_MARKER_DEFAULT = '/img/pin.svg';
 export const URL_MARKER_CURRENT = '/img/pin-active.svg';
+
+export const RATING_MAX_STARS = 5;
 
 export const CITIES = [
   'Paris',
