@@ -1,23 +1,34 @@
 import {Link} from 'react-router-dom';
-import {AppRoute, OFFER_TYPE} from '../../const';
+import {useAppSelector, useAppDispatch} from '../../hooks';
+import {redirectToRoute} from '../../store/action';
+import {AppRoute, AuthorizationStatus, OFFER_TYPE} from '../../const';
 import {calcWidthRating} from '../../utils';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
 import {Offer} from '../../types/offer';
 
-type OfferCardProps = {
-  offer: Offer,
-  onCardHover: (offer: Offer) => void;
+type NearPlacesCardProps = {
+  offer: Offer;
 }
 
-function OfferCard({offer, onCardHover} : OfferCardProps): JSX.Element {
+function NearPlacesCard({offer} : NearPlacesCardProps): JSX.Element {
+  const dispatch = useAppDispatch();
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+
+  const handleBookmarkClick = () => {
+    if (authorizationStatus === AuthorizationStatus.NoAuth) {
+      dispatch(redirectToRoute(AppRoute.Login));
+    }
+  };
+
   const {id, title, type, previewImage, price, isPremium, isFavorite, rating} = offer;
 
   return (
-    <article className="cities__card place-card" onMouseEnter={() => onCardHover(offer)}>
+    <article className="near-places__card place-card">
       {isPremium &&
         <div className="place-card__mark">
           <span>Premium</span>
         </div>}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className="near-places__image-wrapper place-card__image-wrapper">
         <Link to={`${AppRoute.Room}/${id}`}>
           <img className="place-card__image" src={previewImage} width="260" height="200" alt={title} />
         </Link>
@@ -28,7 +39,7 @@ function OfferCard({offer, onCardHover} : OfferCardProps): JSX.Element {
             <b className="place-card__price-value">&euro;{price}&nbsp;</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button button${isFavorite ? ' place-card__bookmark-button--active' : ''}`} type="button">
+          <button className={`place-card__bookmark-button button${isFavorite ? ' place-card__bookmark-button--active' : ''}`} type="button" onClick={handleBookmarkClick}>
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
@@ -50,4 +61,4 @@ function OfferCard({offer, onCardHover} : OfferCardProps): JSX.Element {
   );
 }
 
-export default OfferCard;
+export default NearPlacesCard;

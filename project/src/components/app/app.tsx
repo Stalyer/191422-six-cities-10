@@ -38,7 +38,7 @@ function App(): JSX.Element {
           element={<LoginScreen />}
         />
         <Route
-          path={`${AppRoute.Room}/:id`}
+          path={`${AppRoute.Room}/:offerId`}
           element={<PropertyScreen />}
         />
         <Route

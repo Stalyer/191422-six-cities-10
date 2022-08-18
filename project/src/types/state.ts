@@ -1,10 +1,15 @@
 import {store} from '../store/index';
-import {Offers} from './offer';
+import {Offer, Offers} from './offer';
+import {Reviews} from './review';
 import {UserData} from './user-data';
 import {AuthorizationStatus} from '../const';
 
 export type OfferData = {
+  offer: Offer | null,
   offers: Offers,
+  nearbyOffers: Offers,
+  favoriteOffers: Offers,
+  reviews: Reviews,
   isDataLoaded: boolean;
 }
 
