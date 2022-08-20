@@ -4,21 +4,20 @@ import {calcWidthRating} from '../../utils';
 import {Offer} from '../../types/offer';
 import BookmarkButton from '../../components/bookmark-button/bookmark-button';
 
-type OfferCardProps = {
-  offer: Offer,
-  onCardHover: (offer: Offer) => void;
+type NearPlacesCardProps = {
+  offer: Offer;
 }
 
-function OfferCard({offer, onCardHover} : OfferCardProps): JSX.Element {
+function NearPlacesCard({offer} : NearPlacesCardProps): JSX.Element {
   const {id, title, type, previewImage, price, isPremium, isFavorite, rating} = offer;
 
   return (
-    <article className="cities__card place-card" onMouseEnter={() => onCardHover(offer)}>
+    <article className="near-places__card place-card">
       {isPremium &&
         <div className="place-card__mark">
           <span>Premium</span>
         </div>}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className="near-places__image-wrapper place-card__image-wrapper">
         <Link to={`${AppRoute.Room}/${id}`}>
           <img className="place-card__image" src={previewImage} width="260" height="200" alt={title} />
         </Link>
@@ -46,4 +45,4 @@ function OfferCard({offer, onCardHover} : OfferCardProps): JSX.Element {
   );
 }
 
-export default OfferCard;
+export default NearPlacesCard;

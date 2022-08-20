@@ -16,19 +16,24 @@ export enum APIRoute {
   Favorite = '/favorite',
   Comments = '/comments',
   Login = '/login',
-  Logout = '/logout',
+  Logout = '/logout'
 }
 
 export enum NameSpace {
   Data = 'DATA',
   Offer = 'OFFER',
-  User = 'USER',
+  User = 'USER'
 }
 
 export const URL_MARKER_DEFAULT = '/img/pin.svg';
 export const URL_MARKER_CURRENT = '/img/pin-active.svg';
 
-export const RATING_MAX_STARS = 5;
+export const RATING_STARS_MAX = 5;
+export const RATING_WIDTH = 100;
+export const REVIEW_ITEMS_MAX = 10;
+export const GALLERY_ITEMS_MAX = 6;
+export const COMMENT_LENGTH_MIN = 50;
+export const COMMENT_LENGTH_MAX = 300;
 
 export const CITIES = [
   'Paris',
@@ -38,3 +43,15 @@ export const CITIES = [
   'Hamburg',
   'Dusseldorf'
 ];
+
+export enum OfferCardType {
+  Place = 'place-card',
+  Property = 'property'
+}
+
+export const OFFER_TYPE: { [index: string]: string } = {
+  apartment: 'Apartment',
+  room: 'Private Room',
+  house: 'House',
+  hotel: 'Hotel'
+};

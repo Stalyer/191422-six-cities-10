@@ -1,17 +1,24 @@
 import {useState, FormEvent, ChangeEvent} from 'react';
 import {Link} from 'react-router-dom';
-import {useAppDispatch} from '../../hooks';
+import {useAppSelector, useAppDispatch} from '../../hooks';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
+import {redirectToRoute} from '../../store/action';
 import {loginAction} from '../../store/api-actions';
 import {AuthData} from '../../types/auth-data';
+import {AppRoute, AuthorizationStatus} from '../../const';
 import Logo from '../../components/logo/logo';
 
 function LoginScreen(): JSX.Element {
+  const dispatch = useAppDispatch();
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const [loginForm, setLoginForm] = useState({
     email: '',
     password: ''
   });
 
-  const dispatch = useAppDispatch();
+  if (authorizationStatus === AuthorizationStatus.Auth) {
+    dispatch(redirectToRoute(AppRoute.Root));
+  }
 
   const onSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));

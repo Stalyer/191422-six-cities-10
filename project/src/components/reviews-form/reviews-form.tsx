@@ -1,5 +1,6 @@
 import {useState, Fragment, FormEvent, ChangeEvent} from 'react';
 import {Ratings} from '../../types/rating';
+import {COMMENT_LENGTH_MIN, COMMENT_LENGTH_MAX} from '../../const';
 
 const ratings: Ratings = [
   {
@@ -69,6 +70,7 @@ function ReviewsForm(): JSX.Element {
         className="reviews__textarea form__textarea"
         id="review"
         name="review"
+        value={reviewForm.review}
         placeholder="Tell how was your stay, what you like and what can be improved"
         onChange={({target}: ChangeEvent<HTMLTextAreaElement>) => {
           setReviewForm({...reviewForm, review: target.value});
@@ -79,7 +81,17 @@ function ReviewsForm(): JSX.Element {
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled>Submit</button>
+        <button
+          className="reviews__submit form__submit button"
+          type="submit"
+          disabled={
+            reviewForm.rating === 0 ||
+            reviewForm.review.length < COMMENT_LENGTH_MIN ||
+            reviewForm.review.length > COMMENT_LENGTH_MAX
+          }
+        >
+          Submit
+        </button>
       </div>
     </form>
   );

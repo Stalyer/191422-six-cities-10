@@ -1,17 +1,26 @@
 import {useAppSelector} from '../../hooks';
 import {getOffers} from '../../store/offer-data/selectors';
 import {getCurrentCity} from '../../store/offer-process/selectors';
+import {getLoadedDataStatus} from '../../store/offer-data/selectors';
 import CityList from '../../components/city-list/city-list';
 import Logo from '../../components/logo/logo';
 import Map from '../../components/map/map';
 import OfferList from '../../components/offer-list/offer-list';
 import UserNav from '../../components/user-nav/user-nav';
+import LoadingScreen from '../../pages/loading-screen/loading-screen';
 
 function MainScreen(): JSX.Element {
   const offers = useAppSelector(getOffers);
   const currentCity = useAppSelector(getCurrentCity);
+  const isDataLoaded = useAppSelector(getLoadedDataStatus);
   const currentCityOffers = offers.filter((offer) => offer.city.name === currentCity);
   const offersCount = currentCityOffers.length;
+
+  if (isDataLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   return (
     <div className="page page--gray page--main">
