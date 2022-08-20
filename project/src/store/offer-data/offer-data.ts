@@ -26,32 +26,32 @@ export const offerData = createSlice({
         state.isDataLoaded = false;
       })
       .addCase(fetchFavoriteOffersAction.pending, (state) => {
-        // state.isDataLoaded = true;
+        state.isDataLoaded = true;
       })
       .addCase(fetchFavoriteOffersAction.fulfilled, (state, action) => {
         state.favoriteOffers = action.payload;
-        // state.isDataLoaded = false;
+        state.isDataLoaded = false;
       })
       .addCase(fetchOfferAction.pending, (state) => {
-        // state.isDataLoaded = true;
+        state.isDataLoaded = true;
       })
       .addCase(fetchOfferAction.fulfilled, (state, action) => {
         state.offer = action.payload;
-        // state.isDataLoaded = false;
+        state.isDataLoaded = false;
       })
       .addCase(fetchNearbyOffersAction.pending, (state) => {
-        // state.isDataLoaded = true;
+        state.isDataLoaded = true;
       })
       .addCase(fetchNearbyOffersAction.fulfilled, (state, action) => {
         state.nearbyOffers = action.payload;
-        // state.isDataLoaded = false;
+        state.isDataLoaded = false;
       })
       .addCase(fetchReviewsAction.pending, (state) => {
-        // state.isDataLoaded = true;
+        state.isDataLoaded = true;
       })
       .addCase(fetchReviewsAction.fulfilled, (state, action) => {
         state.reviews = action.payload;
-        // state.isDataLoaded = false;
+        state.isDataLoaded = false;
       });
   }
 });

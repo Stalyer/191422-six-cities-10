@@ -2,27 +2,30 @@ import {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {useAppSelector, useAppDispatch} from '../../hooks';
 import {fetchOfferAction, fetchNearbyOffersAction, fetchReviewsAction} from '../../store/api-actions';
-import {redirectToRoute} from '../../store/action';
 import {getOffer, getOffersNearby, getReviews} from '../../store/offer-data/selectors';
 import {getAuthorizationStatus} from '../../store/user-process/selectors';
-import {AppRoute, AuthorizationStatus, GALLERY_ITEMS_MAX, OFFER_TYPE} from '../../const';
+import {getLoadedDataStatus} from '../../store/offer-data/selectors';
+import {AuthorizationStatus, OfferCardType, GALLERY_ITEMS_MAX, OFFER_TYPE} from '../../const';
 import {calcWidthRating} from '../../utils';
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import Map from '../../components/map/map';
+import BookmarkButton from '../../components/bookmark-button/bookmark-button';
 import NearPlacesList from '../../components/near-places-list/near-places-list';
 import ReviewsForm from '../../components/reviews-form/reviews-form';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import UserNav from '../../components/user-nav/user-nav';
+import LoadingScreen from '../../pages/loading-screen/loading-screen';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 
 function PropertyScreen(): JSX.Element {
   const dispatch = useAppDispatch();
   const {offerId} = useParams();
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const isDataLoaded = useAppSelector(getLoadedDataStatus);
   const nearbyOffers = useAppSelector(getOffersNearby);
   const offer = useAppSelector(getOffer);
   const reviews = useAppSelector(getReviews);
-  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const mapOffers = nearbyOffers.slice();
 
   if (offer) {
@@ -41,15 +44,16 @@ function PropertyScreen(): JSX.Element {
     dispatch(fetchNearbyOffersAction(offerId));
   }, [offerId, dispatch]);
 
+
+  if (isDataLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
   if (!offer) {
     return <NotFoundScreen />;
   }
-
-  const handleBookmarkClick = () => {
-    if (authorizationStatus === AuthorizationStatus.NoAuth) {
-      dispatch(redirectToRoute(AppRoute.Login));
-    }
-  };
 
   const {title, description, images, type, bedrooms, maxAdults, price, isPremium, isFavorite, rating, goods, host} = offer;
 
@@ -84,12 +88,7 @@ function PropertyScreen(): JSX.Element {
               </div>}
               <div className="property__name-wrapper">
                 <h1 className="property__name">{title}</h1>
-                <button className={`property__bookmark-button button${isFavorite ? ' property__bookmark-button--active' : ''}`} type="button" onClick={handleBookmarkClick}>
-                  <svg className="property__bookmark-icon" width="31" height="33">
-                    <use xlinkHref="#icon-bookmark"></use>
-                  </svg>
-                  <span className="visually-hidden">{`${isFavorite ? 'In' : 'to'} bookmarks`}</span>
-                </button>
+                <BookmarkButton isFavorite={isFavorite} cardType={OfferCardType.Property} />
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">

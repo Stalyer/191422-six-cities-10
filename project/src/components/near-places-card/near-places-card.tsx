@@ -1,25 +1,14 @@
 import {Link} from 'react-router-dom';
-import {useAppSelector, useAppDispatch} from '../../hooks';
-import {redirectToRoute} from '../../store/action';
-import {AppRoute, AuthorizationStatus, OFFER_TYPE} from '../../const';
+import {AppRoute, OfferCardType, OFFER_TYPE} from '../../const';
 import {calcWidthRating} from '../../utils';
-import {getAuthorizationStatus} from '../../store/user-process/selectors';
 import {Offer} from '../../types/offer';
+import BookmarkButton from '../../components/bookmark-button/bookmark-button';
 
 type NearPlacesCardProps = {
   offer: Offer;
 }
 
 function NearPlacesCard({offer} : NearPlacesCardProps): JSX.Element {
-  const dispatch = useAppDispatch();
-  const authorizationStatus = useAppSelector(getAuthorizationStatus);
-
-  const handleBookmarkClick = () => {
-    if (authorizationStatus === AuthorizationStatus.NoAuth) {
-      dispatch(redirectToRoute(AppRoute.Login));
-    }
-  };
-
   const {id, title, type, previewImage, price, isPremium, isFavorite, rating} = offer;
 
   return (
@@ -39,12 +28,7 @@ function NearPlacesCard({offer} : NearPlacesCardProps): JSX.Element {
             <b className="place-card__price-value">&euro;{price}&nbsp;</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button button${isFavorite ? ' place-card__bookmark-button--active' : ''}`} type="button" onClick={handleBookmarkClick}>
-            <svg className="place-card__bookmark-icon" width="18" height="19">
-              <use xlinkHref="#icon-bookmark"></use>
-            </svg>
-            <span className="visually-hidden">{`${isFavorite ? 'In' : 'to'} bookmarks`}</span>
-          </button>
+          <BookmarkButton isFavorite={isFavorite} cardType={OfferCardType.Place} />
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">

@@ -8,6 +8,7 @@ import UserNav from '../../components/user-nav/user-nav';
 
 function FavoritesScreen(): JSX.Element {
   const offers = useAppSelector(getOffers);
+  const currentCityOffers = offers.filter((offer) => offer.isFavorite === true);
 
   return (
     <div className="page">
@@ -33,7 +34,7 @@ function FavoritesScreen(): JSX.Element {
                     </Link>
                   </div>
                 </div>
-                <FavoriteList offers={offers} />
+                <FavoriteList offers={currentCityOffers} />
               </li>
             </ul>
           </section>

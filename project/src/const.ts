@@ -29,6 +29,7 @@ export const URL_MARKER_DEFAULT = '/img/pin.svg';
 export const URL_MARKER_CURRENT = '/img/pin-active.svg';
 
 export const RATING_STARS_MAX = 5;
+export const RATING_WIDTH = 100;
 export const REVIEW_ITEMS_MAX = 10;
 export const GALLERY_ITEMS_MAX = 6;
 export const COMMENT_LENGTH_MIN = 50;
@@ -42,6 +43,11 @@ export const CITIES = [
   'Hamburg',
   'Dusseldorf'
 ];
+
+export enum OfferCardType {
+  Place = 'place-card',
+  Property = 'property'
+}
 
 export const OFFER_TYPE: { [index: string]: string } = {
   apartment: 'Apartment',

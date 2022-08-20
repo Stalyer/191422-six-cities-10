@@ -3,11 +3,13 @@ import {useAppDispatch, useAppSelector} from '../../hooks';
 import {logoutAction} from '../../store/api-actions';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import {getAuthorizationStatus, getUserInfo} from '../../store/user-process/selectors';
+import {getOffersFavorite} from '../../store/offer-data/selectors';
 
 function UserNav(): JSX.Element {
+  const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const userInfo = useAppSelector(getUserInfo);
-  const dispatch = useAppDispatch();
+  const favoriteOffers = useAppSelector(getOffersFavorite);
 
   return(
     <nav className="header__nav">
@@ -17,7 +19,7 @@ function UserNav(): JSX.Element {
             <Link to={AppRoute.Favorites} className="header__nav-link header__nav-link--profile">
               <div className="header__avatar-wrapper user__avatar-wrapper" style={userInfo.avatarUrl ? {backgroundImage: `url(${userInfo.avatarUrl})`} : {}}></div>
               <span className="header__user-name user__name">{userInfo.email}</span>
-              <span className="header__favorite-count">3</span>
+              <span className="header__favorite-count">{favoriteOffers.length}</span>
             </Link>
           </li>
           <li className="header__nav-item">
