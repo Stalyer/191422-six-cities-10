@@ -21,7 +21,7 @@ function BookmarkButton({isFavorite, cardType} : BookmarkButtonProps): JSX.Eleme
   return(
     <button className={`${cardType}__bookmark-button button${isFavorite ? ` ${cardType}__bookmark-button--active` : ''}`} type="button" onClick={handleBookmarkClick}>
       {cardType === OfferCardType.Property ?
-        <svg className="property__bookmark-icon" width="31" height="33">
+        <svg className="place-card__bookmark-icon" width="31" height="33">
           <use xlinkHref="#icon-bookmark"></use>
         </svg>
         :

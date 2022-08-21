@@ -55,3 +55,17 @@ export const OFFER_TYPE: { [index: string]: string } = {
   house: 'House',
   hotel: 'Hotel'
 };
+
+export enum SortType {
+  popular = 'popular',
+  priceAsc = 'priceAsc',
+  priceDesc = 'priceDesc',
+  topRated = 'topRated'
+}
+
+export const SORT_TYPE_NAME: { [index: string]: string } = {
+  popular: 'Popular',
+  priceAsc: 'Price: low to high',
+  priceDesc: 'Price: high to low',
+  topRated: 'Top rated first'
+};

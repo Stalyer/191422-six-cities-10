@@ -1,21 +1,19 @@
-import {useState} from 'react';
 import OfferCard from '../offer-card/offer-card';
-import {Offers} from '../../types/offer';
+import {Offer, Offers} from '../../types/offer';
 
 type OfferListProps = {
-  offers: Offers;
+  offers: Offers,
+  onCardHover: (offer: Offer) => void;
 }
 
-function OfferList({offers} : OfferListProps): JSX.Element {
-  const [, setActiveOffer] = useState({});
-
+function OfferList({offers, onCardHover} : OfferListProps): JSX.Element {
   return (
     <div className="cities__places-list places__list tabs__content">
       {offers.map((offer) => (
         <OfferCard
           key={offer.id.toString()}
           offer={offer}
-          onCardHover={setActiveOffer}
+          onCardHover={onCardHover}
         />
       ))}
     </div>
