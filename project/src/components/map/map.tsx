@@ -1,6 +1,9 @@
+import {useState} from 'react';
 import {useRef, useEffect} from 'react';
 import {Icon, Marker} from 'leaflet';
+import {useAppSelector} from '../../hooks';
 import useMap from '../../hooks/useMap';
+import {getCurrentCity} from '../../store/offer-process/selectors';
 import {Offer, Offers} from '../../types/offer';
 import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT} from '../../const';
 import 'leaflet/dist/leaflet.css';
@@ -24,12 +27,28 @@ const currentCustomIcon = new Icon({
 
 function Map(props: MapProps): JSX.Element {
   const {offers, selectedOffer} = props;
-
+  const currentCity = useAppSelector(getCurrentCity);
+  const [mapCity, setMapCity] = useState(currentCity);
   const mapRef = useRef(null);
   const map = useMap(mapRef, offers[0]);
+  const city = offers[0].city;
 
   useEffect(() => {
     if (map) {
+      if(mapCity !== currentCity) {
+        map.eachLayer((layer) => {
+          if (layer instanceof Marker) {
+            map.removeLayer(layer);
+            map.setView({
+              lat: city.location.latitude,
+              lng: city.location.longitude
+            },
+            city.location.zoom
+            );
+          }
+        });
+      }
+
       offers.forEach(({id, location}) => {
         const marker = new Marker({
           lat: location.latitude,
@@ -42,8 +61,10 @@ function Map(props: MapProps): JSX.Element {
           )
           .addTo(map);
       });
+
+      setMapCity(currentCity);
     }
-  }, [map, offers, selectedOffer]);
+  }, [map, offers, selectedOffer, city, currentCity, mapCity]);
 
   return <div style={{height: '100%'}} ref={mapRef}></div>;
 }

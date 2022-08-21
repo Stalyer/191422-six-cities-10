@@ -1,9 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {NameSpace, CITIES} from '../../const';
+import {NameSpace, CITIES, SortType} from '../../const';
 import {OfferProcess} from '../../types/state';
 
 const initialState: OfferProcess = {
-  currentCity: CITIES[0]
+  currentCity: CITIES[0],
+  currentSorting: SortType.popular
 };
 
 export const offerProcess = createSlice({
@@ -12,8 +13,11 @@ export const offerProcess = createSlice({
   reducers: {
     changeCity: (state, action) => {
       state.currentCity = action.payload;
+    },
+    changeSorting: (state, action) => {
+      state.currentSorting = action.payload;
     }
   }
 });
 
-export const {changeCity} = offerProcess.actions;
+export const {changeCity, changeSorting} = offerProcess.actions;

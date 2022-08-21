@@ -1,14 +1,13 @@
 import {Link} from 'react-router-dom';
 import {useAppSelector} from '../../hooks';
-import {getOffers} from '../../store/offer-data/selectors';
+import {getOffersFavorite} from '../../store/offer-data/selectors';
 import FavoriteList from '../../components/favorite-list/favorite-list';
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import UserNav from '../../components/user-nav/user-nav';
 
 function FavoritesScreen(): JSX.Element {
-  const offers = useAppSelector(getOffers);
-  const currentCityOffers = offers.filter((offer) => offer.isFavorite === true);
+  const offers = useAppSelector(getOffersFavorite);
 
   return (
     <div className="page">
@@ -34,7 +33,7 @@ function FavoritesScreen(): JSX.Element {
                     </Link>
                   </div>
                 </div>
-                <FavoriteList offers={currentCityOffers} />
+                <FavoriteList offers={offers} />
               </li>
             </ul>
           </section>
