@@ -20,8 +20,9 @@ export enum APIRoute {
 }
 
 export enum NameSpace {
-  Data = 'DATA',
+  Offers = 'OFFERS',
   Offer = 'OFFER',
+  Main = 'MAIN',
   User = 'USER'
 }
 

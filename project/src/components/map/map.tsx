@@ -3,7 +3,7 @@ import {useRef, useEffect} from 'react';
 import {Icon, Marker} from 'leaflet';
 import {useAppSelector} from '../../hooks';
 import useMap from '../../hooks/useMap';
-import {getCurrentCity} from '../../store/offer-process/selectors';
+import {getCurrentCity} from '../../store/main-process/selectors';
 import {Offer, Offers} from '../../types/offer';
 import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT} from '../../const';
 import 'leaflet/dist/leaflet.css';

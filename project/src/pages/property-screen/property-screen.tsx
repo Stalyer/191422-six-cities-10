@@ -2,9 +2,8 @@ import {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {useAppSelector, useAppDispatch} from '../../hooks';
 import {fetchOfferAction, fetchNearbyOffersAction, fetchReviewsAction} from '../../store/api-actions';
-import {getOffer, getOffersNearby, getReviews} from '../../store/offer-data/selectors';
+import {getOffer, getOffersNearby, getReviews, getLoadedDataStatus} from '../../store/offer-process/selectors';
 import {getAuthorizationStatus} from '../../store/user-process/selectors';
-import {getLoadedDataStatus} from '../../store/offer-data/selectors';
 import {AuthorizationStatus, OfferCardType, GALLERY_ITEMS_MAX, OFFER_TYPE} from '../../const';
 import {calcWidthRating} from '../../utils';
 import Footer from '../../components/footer/footer';
@@ -37,13 +36,16 @@ function PropertyScreen(): JSX.Element {
   }, [offerId, dispatch]);
 
   useEffect(() => {
-    dispatch(fetchReviewsAction(offerId));
-  }, [offerId, dispatch]);
+    if (offer) {
+      dispatch(fetchReviewsAction(offerId));
+    }
+  }, [offerId, offer, dispatch]);
 
   useEffect(() => {
-    dispatch(fetchNearbyOffersAction(offerId));
-  }, [offerId, dispatch]);
-
+    if (offer) {
+      dispatch(fetchNearbyOffersAction(offerId));
+    }
+  }, [offerId, offer, dispatch]);
 
   if (isDataLoaded) {
     return (
@@ -147,7 +149,7 @@ function PropertyScreen(): JSX.Element {
                 <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
                 <ReviewsList reviews={reviews} />
                 {authorizationStatus === AuthorizationStatus.Auth &&
-                  <ReviewsForm />}
+                  <ReviewsForm offerId={offer.id} />}
               </section>
             </div>
           </div>

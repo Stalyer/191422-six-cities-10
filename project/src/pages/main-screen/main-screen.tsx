@@ -1,8 +1,7 @@
 import {useState} from 'react';
 import {useAppSelector} from '../../hooks';
-import {getOffers} from '../../store/offer-data/selectors';
-import {getCurrentCity, getCurrentSorting} from '../../store/offer-process/selectors';
-import {getLoadedDataStatus} from '../../store/offer-data/selectors';
+import {getOffers, getLoadedDataStatus} from '../../store/offers-process/selectors';
+import {getCurrentCity, getCurrentSorting} from '../../store/main-process/selectors';
 import {SortType} from '../../const';
 import {sortOfferPriceAsc, sortOfferPriceDesc, sortOfferTopRated} from '../../utils';
 import CityList from '../../components/city-list/city-list';
