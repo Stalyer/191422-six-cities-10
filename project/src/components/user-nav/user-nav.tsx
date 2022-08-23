@@ -3,7 +3,7 @@ import {useAppDispatch, useAppSelector} from '../../hooks';
 import {logoutAction} from '../../store/api-actions';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import {getAuthorizationStatus, getUserInfo} from '../../store/user-process/selectors';
-import {getOffersFavorite} from '../../store/offer-data/selectors';
+import {getOffersFavorite} from '../../store/offers-process/selectors';
 
 function UserNav(): JSX.Element {
   const dispatch = useAppDispatch();

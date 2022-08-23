@@ -1,8 +1,8 @@
 import {useState} from 'react';
 import {useAppSelector, useAppDispatch} from '../../hooks';
 import {SortType, SORT_TYPE_NAME} from '../../const';
-import {changeSorting} from '../../store/offer-process/offer-process';
-import {getCurrentSorting} from '../../store/offer-process/selectors';
+import {changeSorting} from '../../store/main-process/main-process';
+import {getCurrentSorting} from '../../store/main-process/selectors';
 
 function PlacesSorting(): JSX.Element {
   const dispatch = useAppDispatch();

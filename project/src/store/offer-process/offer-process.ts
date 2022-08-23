@@ -1,23 +1,57 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {NameSpace, CITIES, SortType} from '../../const';
+import {NameSpace} from '../../const';
 import {OfferProcess} from '../../types/state';
+import {fetchOfferAction, fetchNearbyOffersAction, fetchReviewsAction, addReviewAction} from '../api-actions';
+import {toast} from 'react-toastify';
 
 const initialState: OfferProcess = {
-  currentCity: CITIES[0],
-  currentSorting: SortType.popular
+  offer: null,
+  nearbyOffers: [],
+  reviews: [],
+  isDataLoaded: false
 };
 
 export const offerProcess = createSlice({
-  name: NameSpace.Data,
+  name: NameSpace.Offer,
   initialState,
-  reducers: {
-    changeCity: (state, action) => {
-      state.currentCity = action.payload;
-    },
-    changeSorting: (state, action) => {
-      state.currentSorting = action.payload;
-    }
+  reducers: {},
+  extraReducers(builder) {
+    builder
+      .addCase(fetchOfferAction.pending, (state) => {
+        state.isDataLoaded = true;
+      })
+      .addCase(fetchOfferAction.fulfilled, (state, action) => {
+        state.offer = action.payload;
+        state.isDataLoaded = false;
+      })
+      .addCase(fetchOfferAction.rejected, (state) => {
+        state.isDataLoaded = false;
+      })
+      .addCase(fetchNearbyOffersAction.pending, (state) => {
+        state.isDataLoaded = true;
+      })
+      .addCase(fetchNearbyOffersAction.fulfilled, (state, action) => {
+        state.nearbyOffers = action.payload;
+        state.isDataLoaded = false;
+      })
+      .addCase(fetchNearbyOffersAction.rejected, (state) => {
+        state.isDataLoaded = false;
+      })
+      .addCase(fetchReviewsAction.pending, (state) => {
+        state.isDataLoaded = true;
+      })
+      .addCase(fetchReviewsAction.fulfilled, (state, action) => {
+        state.reviews = action.payload;
+        state.isDataLoaded = false;
+      })
+      .addCase(fetchReviewsAction.rejected, (state) => {
+        state.isDataLoaded = false;
+      })
+      .addCase(addReviewAction.rejected, () => {
+        toast('There was an error adding your review, please try again later');
+      })
+      .addCase(addReviewAction.fulfilled, (state, action) => {
+        state.reviews = action.payload;
+      });
   }
 });
-
-export const {changeCity, changeSorting} = offerProcess.actions;

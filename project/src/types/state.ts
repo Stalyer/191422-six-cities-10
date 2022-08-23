@@ -4,16 +4,20 @@ import {Reviews} from './review';
 import {UserData} from './user-data';
 import {AuthorizationStatus, SortType} from '../const';
 
-export type OfferData = {
-  offer: Offer | null,
+export type OffersProcess = {
   offers: Offers,
-  nearbyOffers: Offers,
   favoriteOffers: Offers,
-  reviews: Reviews,
   isDataLoaded: boolean;
 }
 
 export type OfferProcess = {
+  offer: Offer | null,
+  nearbyOffers: Offers,
+  reviews: Reviews,
+  isDataLoaded: boolean;
+}
+
+export type MainProcess = {
   currentCity: string,
   currentSorting: SortType;
 }

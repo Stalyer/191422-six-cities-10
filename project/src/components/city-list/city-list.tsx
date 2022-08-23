@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {getCurrentCity} from '../../store/offer-process/selectors';
-import {changeCity} from '../../store/offer-process/offer-process';
+import {getCurrentCity} from '../../store/main-process/selectors';
+import {changeCity} from '../../store/main-process/main-process';
 import {CITIES} from '../../const';
 
 function CityList(): JSX.Element {

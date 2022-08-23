@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 import {useAppSelector} from '../../hooks';
-import {getOffersFavorite} from '../../store/offer-data/selectors';
+import {getOffersFavorite} from '../../store/offers-process/selectors';
 import FavoriteList from '../../components/favorite-list/favorite-list';
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
