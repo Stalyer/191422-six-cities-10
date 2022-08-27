@@ -1,31 +1,24 @@
 import {useState, FormEvent, ChangeEvent} from 'react';
 import {Link} from 'react-router-dom';
-import {useAppSelector, useAppDispatch} from '../../hooks';
-import {getAuthorizationStatus} from '../../store/user-process/selectors';
+import {useAppDispatch} from '../../hooks';
 import {changeCity} from '../../store/main-process/main-process';
-import {redirectToRoute} from '../../store/action';
 import {loginAction} from '../../store/api-actions';
 import {AuthData} from '../../types/auth-data';
-import {AppRoute, AuthorizationStatus, CITIES} from '../../const';
+import {CITIES} from '../../const';
 import Logo from '../../components/logo/logo';
 import {toast} from 'react-toastify';
 
 const checkEmailPattern = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
-const сheckPasswordPattern = /(.+\d+)|(\d+.+)/gm;
+const checkPasswordPattern = /^((?=\S*?[A-Za-z])(?=\S*?[0-9]).{1,})\S$/;
 const randomIndex = Math.floor(Math.random() * (CITIES.length - 1));
 const randomCity = CITIES[randomIndex];
 
 function LoginScreen(): JSX.Element {
   const dispatch = useAppDispatch();
-  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const [loginForm, setLoginForm] = useState({
     email: '',
     password: ''
   });
-
-  if (authorizationStatus === AuthorizationStatus.Auth) {
-    dispatch(redirectToRoute(AppRoute.Root));
-  }
 
   const onSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));
@@ -39,7 +32,7 @@ function LoginScreen(): JSX.Element {
       return;
     }
 
-    if (!сheckPasswordPattern.test(loginForm.password)) {
+    if (!checkPasswordPattern.test(loginForm.password)) {
       toast('Please enter at least one letter and number');
       return;
     }
