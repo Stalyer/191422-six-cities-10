@@ -1,20 +1,28 @@
 import {useAppSelector, useAppDispatch} from '../../hooks';
 import {AppRoute, AuthorizationStatus, OfferCardType} from '../../const';
 import {redirectToRoute} from '../../store/action';
+import {changeFavoriteStatusAction} from '../../store/api-actions';
 import {getAuthorizationStatus} from '../../store/user-process/selectors';
 
 type BookmarkButtonProps = {
-  isFavorite: boolean;
+  offerId: number,
+  isFavorite: boolean,
   cardType: string;
 }
 
-function BookmarkButton({isFavorite, cardType} : BookmarkButtonProps): JSX.Element {
+function BookmarkButton({offerId, isFavorite, cardType} : BookmarkButtonProps): JSX.Element {
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const favoriteDate = {
+    offerId: offerId,
+    favoriteStatus: isFavorite ? 0 : 1
+  };
 
   const handleBookmarkClick = () => {
     if (authorizationStatus === AuthorizationStatus.NoAuth) {
       dispatch(redirectToRoute(AppRoute.Login));
+    } else {
+      dispatch(changeFavoriteStatusAction(favoriteDate));
     }
   };
 

@@ -1,5 +1,4 @@
-import {useState} from 'react';
-import {useRef, useEffect} from 'react';
+import {useState, useRef, useEffect} from 'react';
 import {Icon, Marker} from 'leaflet';
 import {useAppSelector} from '../../hooks';
 import useMap from '../../hooks/useMap';

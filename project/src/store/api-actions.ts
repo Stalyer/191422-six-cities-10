@@ -9,6 +9,7 @@ import {APIRoute, AppRoute} from '../const';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
 import {ReviewData} from '../types/review-data';
+import {FavoriteData} from '../types/favorite-date';
 
 export const fetchOffersAction = createAsyncThunk<Offers, undefined, {
   dispatch: AppDispatch,
@@ -66,6 +67,18 @@ export const fetchReviewsAction = createAsyncThunk<Reviews, string | undefined, 
   'dataOffer/fetchReviews',
   async (offerId, {dispatch, extra: api}) => {
     const {data} = await api.get<Reviews>(`${APIRoute.Comments}/${offerId}`);
+    return data;
+  },
+);
+
+export const changeFavoriteStatusAction = createAsyncThunk<Offer, FavoriteData, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'dataOffer/changeFavoriteStatus',
+  async ({offerId, favoriteStatus}, {dispatch, extra: api}) => {
+    const {data} = await api.post<Offer>(`${APIRoute.Favorite}/${offerId}/${favoriteStatus}`);
     return data;
   },
 );
