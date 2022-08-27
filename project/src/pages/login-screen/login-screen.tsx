@@ -2,11 +2,18 @@ import {useState, FormEvent, ChangeEvent} from 'react';
 import {Link} from 'react-router-dom';
 import {useAppSelector, useAppDispatch} from '../../hooks';
 import {getAuthorizationStatus} from '../../store/user-process/selectors';
+import {changeCity} from '../../store/main-process/main-process';
 import {redirectToRoute} from '../../store/action';
 import {loginAction} from '../../store/api-actions';
 import {AuthData} from '../../types/auth-data';
-import {AppRoute, AuthorizationStatus} from '../../const';
+import {AppRoute, AuthorizationStatus, CITIES} from '../../const';
 import Logo from '../../components/logo/logo';
+import {toast} from 'react-toastify';
+
+const checkEmailPattern = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
+const сheckPasswordPattern = /(.+\d+)|(\d+.+)/gm;
+const randomIndex = Math.floor(Math.random() * (CITIES.length - 1));
+const randomCity = CITIES[randomIndex];
 
 function LoginScreen(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -27,12 +34,20 @@ function LoginScreen(): JSX.Element {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    if (loginForm.email !== '' && loginForm.password !== '') {
-      onSubmit({
-        login: loginForm.email,
-        password: loginForm.password,
-      });
+    if (!checkEmailPattern.test(loginForm.email)) {
+      toast('Please enter a valid email');
+      return;
     }
+
+    if (!сheckPasswordPattern.test(loginForm.password)) {
+      toast('Please enter at least one letter and number');
+      return;
+    }
+
+    onSubmit({
+      login: loginForm.email,
+      password: loginForm.password,
+    });
   };
 
   return (
@@ -88,8 +103,8 @@ function LoginScreen(): JSX.Element {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <Link to="/" className="locations__item-link">
-                <span>Amsterdam</span>
+              <Link to="/" className="locations__item-link" onClick={() => dispatch(changeCity(randomCity))}>
+                <span>{randomCity}</span>
               </Link>
             </div>
           </section>

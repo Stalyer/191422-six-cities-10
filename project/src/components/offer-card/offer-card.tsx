@@ -29,7 +29,7 @@ function OfferCard({offer, onCardHover} : OfferCardProps): JSX.Element {
             <b className="place-card__price-value">&euro;{price}&nbsp;</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <BookmarkButton isFavorite={isFavorite} cardType={OfferCardType.Place} />
+          <BookmarkButton offerId={id} isFavorite={isFavorite} cardType={OfferCardType.Place} />
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">

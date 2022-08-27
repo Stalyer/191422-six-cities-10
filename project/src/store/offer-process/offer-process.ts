@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {NameSpace} from '../../const';
 import {OfferProcess} from '../../types/state';
-import {fetchOfferAction, fetchNearbyOffersAction, fetchReviewsAction, addReviewAction} from '../api-actions';
+import {fetchOfferAction, fetchNearbyOffersAction, fetchReviewsAction, addReviewAction, changeFavoriteStatusAction} from '../api-actions';
 import {toast} from 'react-toastify';
 
 const initialState: OfferProcess = {
@@ -52,6 +52,20 @@ export const offerProcess = createSlice({
       })
       .addCase(addReviewAction.fulfilled, (state, action) => {
         state.reviews = action.payload;
+      })
+      .addCase(changeFavoriteStatusAction.fulfilled, (state, action) => {
+        const updatedOffer = action.payload;
+        const currentNearbyOffer = state.nearbyOffers.find((offer) => offer.id === updatedOffer.id);
+
+        if (currentNearbyOffer) {
+          currentNearbyOffer.isFavorite = updatedOffer.isFavorite;
+        }
+
+        if (state.offer) {
+          if (state.offer.id === updatedOffer.id) {
+            state.offer.isFavorite = updatedOffer.isFavorite;
+          }
+        }
       });
   }
 });

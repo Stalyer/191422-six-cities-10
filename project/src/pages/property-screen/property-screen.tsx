@@ -57,7 +57,7 @@ function PropertyScreen(): JSX.Element {
     return <NotFoundScreen />;
   }
 
-  const {title, description, images, type, bedrooms, maxAdults, price, isPremium, isFavorite, rating, goods, host} = offer;
+  const {id, title, description, images, type, bedrooms, maxAdults, price, isPremium, isFavorite, rating, goods, host} = offer;
 
   return (
     <div className="page">
@@ -90,7 +90,7 @@ function PropertyScreen(): JSX.Element {
               </div>}
               <div className="property__name-wrapper">
                 <h1 className="property__name">{title}</h1>
-                <BookmarkButton isFavorite={isFavorite} cardType={OfferCardType.Property} />
+                <BookmarkButton offerId={id} isFavorite={isFavorite} cardType={OfferCardType.Property} />
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
