@@ -4,7 +4,7 @@ import {useAppSelector, useAppDispatch} from '../../hooks';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import PrivateRoute from '../private-route/private-route';
 import AuthorizationRoute from '../authorization-route/authorization-route';
-import HistoryRouter from '../history-route/history-route';
+import HistoryRouter from '../history-router/history-router';
 import browserHistory from '../../browser-history';
 import {getAuthorizationStatus} from '../../store/user-process/selectors';
 import {fetchFavoriteOffersAction} from '../../store/api-actions';
