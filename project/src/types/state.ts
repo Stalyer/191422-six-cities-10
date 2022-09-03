@@ -24,7 +24,7 @@ export type MainProcess = {
 
 export type UserProcess = {
   authorizationStatus: AuthorizationStatus,
-  userInfo: UserData;
+  userInfo: UserData | null;
 };
 
 export type State = ReturnType<typeof store.getState>;

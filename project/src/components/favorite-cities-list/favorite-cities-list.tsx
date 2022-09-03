@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
 import {useAppDispatch} from '../../hooks';
 import {changeCity} from '../../store/main-process/main-process';
-import FavoriteList from '../../components/favorite-list/favorite-list';
+import FavoriteList from '../favorite-list/favorite-list';
 import {Favorites} from '../../types/favorites';
 
 type FavoriteListProps = {

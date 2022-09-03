@@ -22,11 +22,17 @@ export const offersProcess = createSlice({
         state.offers = action.payload;
         state.isDataLoaded = false;
       })
+      .addCase(fetchOffersAction.rejected, (state) => {
+        state.isDataLoaded = false;
+      })
       .addCase(fetchFavoriteOffersAction.pending, (state) => {
         state.isDataLoaded = true;
       })
       .addCase(fetchFavoriteOffersAction.fulfilled, (state, action) => {
         state.favoriteOffers = action.payload;
+        state.isDataLoaded = false;
+      })
+      .addCase(fetchFavoriteOffersAction.rejected, (state) => {
         state.isDataLoaded = false;
       })
       .addCase(changeFavoriteStatusAction.fulfilled, (state, action) => {

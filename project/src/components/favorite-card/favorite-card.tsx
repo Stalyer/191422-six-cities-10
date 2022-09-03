@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 import {AppRoute, OfferCardType, OFFER_TYPE} from '../../const';
-import {calcWidthRating} from '../../utils';
+import {calcWidthRating} from '../../utils/utils';
 import {Offer} from '../../types/offer';
 import BookmarkButton from '../../components/bookmark-button/bookmark-button';
 

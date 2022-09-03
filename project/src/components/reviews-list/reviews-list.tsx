@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import {REVIEW_ITEMS_MAX} from '../../const';
 import {Review, Reviews} from '../../types/review';
-import {calcWidthRating} from '../../utils';
+import {calcWidthRating} from '../../utils/utils';
 
 type ReviewsListProps = {
   reviews: Reviews;

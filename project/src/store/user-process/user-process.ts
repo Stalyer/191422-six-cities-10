@@ -5,14 +5,7 @@ import {checkAuthAction, loginAction, logoutAction} from '../api-actions';
 
 const initialState: UserProcess = {
   authorizationStatus: AuthorizationStatus.Unknown,
-  userInfo: {
-    id: 0,
-    email: '',
-    avatarUrl: '',
-    name: '',
-    token: '',
-    isPro: false
-  }
+  userInfo: null
 };
 
 export const userProcess = createSlice({
@@ -37,6 +30,7 @@ export const userProcess = createSlice({
       })
       .addCase(logoutAction.fulfilled, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;
+        state.userInfo = null;
       });
   }
 });

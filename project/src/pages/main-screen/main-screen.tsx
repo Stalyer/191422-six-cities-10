@@ -3,7 +3,7 @@ import {useAppSelector} from '../../hooks';
 import {getOffers, getLoadedDataStatus} from '../../store/offers-process/selectors';
 import {getCurrentCity, getCurrentSorting} from '../../store/main-process/selectors';
 import {SortType} from '../../const';
-import {sortOfferPriceAsc, sortOfferPriceDesc, sortOfferTopRated} from '../../utils';
+import {sortOfferPriceAsc, sortOfferPriceDesc, sortOfferTopRated} from '../../utils/utils';
 import CityList from '../../components/city-list/city-list';
 import Logo from '../../components/logo/logo';
 import Map from '../../components/map/map';

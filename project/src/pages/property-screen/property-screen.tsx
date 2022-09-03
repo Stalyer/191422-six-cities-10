@@ -5,7 +5,7 @@ import {fetchOfferAction, fetchNearbyOffersAction, fetchReviewsAction} from '../
 import {getOffer, getOffersNearby, getReviews, getLoadedDataStatus} from '../../store/offer-process/selectors';
 import {getAuthorizationStatus} from '../../store/user-process/selectors';
 import {AuthorizationStatus, OfferCardType, GALLERY_ITEMS_MAX, OFFER_TYPE} from '../../const';
-import {calcWidthRating} from '../../utils';
+import {calcWidthRating} from '../../utils/utils';
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import Map from '../../components/map/map';

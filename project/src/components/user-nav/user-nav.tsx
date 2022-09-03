@@ -13,7 +13,7 @@ function UserNav(): JSX.Element {
 
   return(
     <nav className="header__nav">
-      {authorizationStatus === AuthorizationStatus.Auth ?
+      {authorizationStatus === AuthorizationStatus.Auth && userInfo ?
         <ul className="header__nav-list">
           <li className="header__nav-item user">
             <Link to={AppRoute.Favorites} className="header__nav-link header__nav-link--profile">
